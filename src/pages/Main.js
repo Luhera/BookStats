@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Card from "../Components/Cards";
 import bookService from "../Services/bookService";
+import axios from "axios";
 
 const Main = () => {
   const [search, setSearch] = useState("");
@@ -21,7 +22,7 @@ const Main = () => {
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=10`
       )
-      .then((res) => setData(res.data.items || []))
+      .then((res) => setBookData(res.data.items || []))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };

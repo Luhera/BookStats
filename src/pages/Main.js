@@ -1,4 +1,3 @@
-// src/Pages/Main.js
 import React, { useState } from "react";
 import axios from "axios";
 import {
@@ -124,14 +123,24 @@ const Main = () => {
           </Typography>
         ) : bookData.length > 0 ? (
           <>
-            <Grid container spacing={2}>
-              {bookData.map((item) => (
-                <Grid item xs={12} sm={6} md={4} key={item.id}>
-                  <Card book={item} />
-                </Grid>
-              ))}
-            </Grid>
-            <Grafico bookData={bookData} />
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h6" sx={{ mb: 2, textAlign: "center" }}>
+                Livros Encontrados
+              </Typography>
+              <Grid container spacing={2}>
+                {bookData.map((item) => (
+                  <Grid item xs={12} sm={6} md={4} key={item.id}>
+                    <Card book={item} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+            <Box sx={{ mt: 4 }}>
+              <Typography variant="h6" sx={{ mb: 2, textAlign: "center" }}>
+                Dashboard de Estatísticas
+              </Typography>
+              <Grafico bookData={bookData} />
+            </Box>
           </>
         ) : (
           <Typography
@@ -139,7 +148,7 @@ const Main = () => {
             color="textSecondary"
             sx={{ textAlign: "center", mt: 4 }}
           >
-            No books found.
+            Nenhum livro encontrado.
           </Typography>
         )}
       </Container>

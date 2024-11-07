@@ -1,3 +1,4 @@
+// src/Pages/Main.js
 import React, { useState } from "react";
 import axios from "axios";
 import {
@@ -9,6 +10,7 @@ import {
   Grid,
 } from "@mui/material";
 import Card from "../Components/Cards";
+import Grafico from "../Components/grafico";
 
 const Main = () => {
   const [search, setSearch] = useState("");
@@ -121,13 +123,16 @@ const Main = () => {
             Loading...
           </Typography>
         ) : bookData.length > 0 ? (
-          <Grid container spacing={2}>
-            {bookData.map((item) => (
-              <Grid item xs={12} sm={6} md={4} key={item.id}>
-                <Card book={item} />
-              </Grid>
-            ))}
-          </Grid>
+          <>
+            <Grid container spacing={2}>
+              {bookData.map((item) => (
+                <Grid item xs={12} sm={6} md={4} key={item.id}>
+                  <Card book={item} />
+                </Grid>
+              ))}
+            </Grid>
+            <Grafico bookData={bookData} />
+          </>
         ) : (
           <Typography
             variant="body1"

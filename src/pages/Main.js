@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import {
-  Box,
   Container,
+  Box,
   Typography,
   TextField,
   Button,
@@ -13,8 +12,8 @@ import Grafico from "../Components/grafico";
 
 const Main = () => {
   const [search, setSearch] = useState("");
-  const [bookData, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [bookData, setBookData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const searchBook = () => {
     setLoading(true);
@@ -22,27 +21,20 @@ const Main = () => {
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=10`
       )
-      .then((res) => setData(res.data.items || []))
+      .then((res) => setBookData(res.data.items || []))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };
 
-  const handleKeyPress = (evt) => {
-    if (evt.key === "Enter") {
-      searchBook();
-    }
-  };
+  const filteredBooks = bookData.filter((book) =>
+    book.volumeInfo.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <Container
       maxWidth="lg"
       className="header"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100vh",
-        p: 0,
-      }}
+      sx={{ display: "flex", flexDirection: "column", height: "100vh", p: 0 }}
     >
       <Box
         sx={{
@@ -92,12 +84,7 @@ const Main = () => {
             placeholder="Enter Your Book Name"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onKeyPress={handleKeyPress}
-            sx={{
-              backgroundColor: "#fff",
-              borderRadius: 1,
-              flex: 1,
-            }}
+            sx={{ backgroundColor: "#fff", borderRadius: 1, flex: 1 }}
           />
           <Button variant="contained" onClick={searchBook}>
             Search

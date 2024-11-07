@@ -9,21 +9,23 @@ import {
 } from "@mui/material";
 import Card from "../Components/Cards";
 import bookService from "../Services/bookService";
+import axios from "axios";
 
 const Main = () => {
   const [search, setSearch] = useState("");
   const [bookData, setBookData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      setLoading(true);
-      const data = await bookService.getBooks(search);
-      setBookData(data);
-      setLoading(false);
-    };
-    fetchBooks();
-  }, [search]);
+  const searchBook = () => {
+    setLoading(true);
+    axios
+      .get(
+        `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=10`
+      )
+      .then((res) => setBookData(res.data.items || []))
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  };
 
   const filteredBooks = bookData.filter((book) =>
     book.volumeInfo.title.toLowerCase().includes(search.toLowerCase())
@@ -85,8 +87,8 @@ const Main = () => {
             onChange={(e) => setSearch(e.target.value)}
             sx={{ backgroundColor: "#fff", borderRadius: 1, flex: 1 }}
           />
-          <Button variant="contained" sx={{ padding: 1 }}>
-            <i className="fas fa-search"></i>
+          <Button variant="contained" onClick={searchBook}>
+            Search
           </Button>
         </Box>
         <Box mt={4}>

@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import {
-  Box,
   Container,
+  Box,
   Typography,
   TextField,
   Button,
   Grid,
 } from "@mui/material";
 import Card from "../Components/Cards";
+import bookService from "../Services/bookService";
 
 const Main = () => {
   const [search, setSearch] = useState("");
-  const [bookData, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [bookData, setBookData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const searchBook = () => {
     setLoading(true);
@@ -26,22 +26,15 @@ const Main = () => {
       .finally(() => setLoading(false));
   };
 
-  const handleKeyPress = (evt) => {
-    if (evt.key === "Enter") {
-      searchBook();
-    }
-  };
+  const filteredBooks = bookData.filter((book) =>
+    book.volumeInfo.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <Container
       maxWidth="lg"
       className="header"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100vh",
-        p: 0,
-      }}
+      sx={{ display: "flex", flexDirection: "column", height: "100vh", p: 0 }}
     >
       <Box
         sx={{
@@ -91,12 +84,7 @@ const Main = () => {
             placeholder="Enter Your Book Name"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onKeyPress={handleKeyPress}
-            sx={{
-              backgroundColor: "#fff",
-              borderRadius: 1,
-              flex: 1,
-            }}
+            sx={{ backgroundColor: "#fff", borderRadius: 1, flex: 1 }}
           />
           <Button variant="contained" onClick={searchBook}>
             Search
@@ -120,9 +108,9 @@ const Main = () => {
           >
             Loading...
           </Typography>
-        ) : bookData.length > 0 ? (
-          <Grid container spacing={2}>
-            {bookData.map((item) => (
+        ) : filteredBooks.length > 0 ? (
+          <Grid container spacing={4}>
+            {filteredBooks.map((item) => (
               <Grid item xs={12} sm={6} md={4} key={item.id}>
                 <Card book={item} />
               </Grid>

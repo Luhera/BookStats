@@ -26,7 +26,7 @@ const Cards = ({ book }) => {
         {thumbnail && (
           <CardMedia
             component="img"
-            height="200"
+            height="150"
             image={thumbnail}
             alt="Book Thumbnail"
           />
@@ -36,10 +36,10 @@ const Cards = ({ book }) => {
             {book.volumeInfo.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" noWrap>
-            {book.volumeInfo.authors}
+            {book.volumeInfo.authors?.join(", ")}
           </Typography>
           <Typography variant="body2" color="textSecondary">
-            {amount !== "Not for sale" ? `₹${amount}` : amount}
+            {amount}
           </Typography>
         </CardContent>
       </MuiCard>

@@ -19,7 +19,7 @@ const Main = () => {
     setLoading(true);
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${search}&AIzaSyBkvcgVw0BmoKYpb3JM1nYhjIN-uLtdWVk&maxResults=30`
+        `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=10`
       )
       .then((res) => setData(res.data.items || []))
       .catch((err) => console.log(err))
@@ -98,7 +98,9 @@ const Main = () => {
               flex: 1,
             }}
           />
-          <Button variant="contained" onClick={searchBook}></Button>
+          <Button variant="contained" onClick={searchBook}>
+            Search
+          </Button>
         </Box>
         <Box mt={4}>
           <img

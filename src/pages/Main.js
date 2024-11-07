@@ -8,8 +8,7 @@ import {
   Grid,
 } from "@mui/material";
 import Card from "../Components/Cards";
-import bookService from "../Services/bookService";
-import axios from "axios";
+import Grafico from "../Components/grafico";
 
 const Main = () => {
   const [search, setSearch] = useState("");
@@ -109,21 +108,34 @@ const Main = () => {
           >
             Loading...
           </Typography>
-        ) : filteredBooks.length > 0 ? (
-          <Grid container spacing={4}>
-            {filteredBooks.map((item) => (
-              <Grid item xs={12} sm={6} md={4} key={item.id}>
-                <Card book={item} />
+        ) : bookData.length > 0 ? (
+          <>
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h6" sx={{ mb: 2, textAlign: "center" }}>
+                Livros Encontrados
+              </Typography>
+              <Grid container spacing={2}>
+                {bookData.map((item) => (
+                  <Grid item xs={12} sm={6} md={4} key={item.id}>
+                    <Card book={item} />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
+            </Box>
+            <Box sx={{ mt: 4 }}>
+              <Typography variant="h6" sx={{ mb: 2, textAlign: "center" }}>
+                Dashboard de Estatísticas
+              </Typography>
+              <Grafico bookData={bookData} />
+            </Box>
+          </>
         ) : (
           <Typography
             variant="body1"
             color="textSecondary"
             sx={{ textAlign: "center", mt: 4 }}
           >
-            No books found.
+            Nenhum livro encontrado.
           </Typography>
         )}
       </Container>

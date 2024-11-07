@@ -1,8 +1,8 @@
 import React from "react";
-import "./Styles/global.css";
+import Main from "./Pages/Main";
 
-function App() {
-  return <div className="App">Wellouu word</div>;
-}
+const App = () => {
+  return <Main />;
+};
 
 export default App;

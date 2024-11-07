@@ -43,7 +43,6 @@ const Main = () => {
         p: 0,
       }}
     >
-      {/* Área com a frase e imagem de fundo */}
       <Box
         sx={{
           flexGrow: 1,
@@ -63,7 +62,6 @@ const Main = () => {
         </Typography>
       </Box>
 
-      {/* Área de pesquisa com campo de entrada e botão */}
       <Box
         sx={{
           flexGrow: 0,
@@ -111,7 +109,6 @@ const Main = () => {
         </Box>
       </Box>
 
-      {/* Área dos resultados */}
       <Container className="container" sx={{ mt: 4, padding: "20px" }}>
         {loading ? (
           <Typography

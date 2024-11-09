@@ -1,0 +1,164 @@
+/* Estilos globais */
+body,
+html,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0;
+}
+
+/* Estilo para o Box de Busca */
+.search-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #8b5e3c;
+  color: #ead3a2;
+  padding: 4rem;
+  text-align: center;
+}
+
+.search-input {
+  background-color: #fff;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.search-button {
+  margin-left: 8px;
+}
+
+.container {
+  margin-top: 4rem;
+  padding: 20px;
+}
+
+/* Mensagens de carregamento e sem livros */
+.loading-message,
+.no-books-message {
+  text-align: center;
+  margin-top: 4rem;
+  color: #333;
+}
+
+/* Estilo para os cards */
+.card {
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-media {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Modal */
+.modal-thumbnail {
+  width: 150px;
+  height: 200px;
+  margin-right: 20px;
+}
+
+.modal-content {
+  margin-top: 2rem;
+}
+
+.modal-genres,
+.modal-rating {
+  margin-top: 1rem;
+}
+/* Estilos globais */
+body,
+html,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0;
+}
+
+/* Estilo para o Box de Busca */
+.search-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #8b5e3c;
+  color: #ead3a2;
+  padding: 4rem;
+  text-align: center;
+}
+
+.search-input {
+  background-color: #fff;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.search-button {
+  margin-left: 8px;
+}
+
+.container {
+  margin-top: 4rem;
+  padding: 20px;
+}
+
+/* Mensagens de carregamento e sem livros */
+.loading-message,
+.no-books-message {
+  text-align: center;
+  margin-top: 4rem;
+  color: #333;
+}
+
+/* Estilo para os cards */
+.card {
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-media {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Modal */
+.modal-thumbnail {
+  width: 150px;
+  height: 200px;
+  margin-right: 20px;
+}
+
+.modal-content {
+  margin-top: 2rem;
+}
+
+.modal-genres,
+.modal-rating {
+  margin-top: 1rem;
+}

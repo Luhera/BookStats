@@ -6,6 +6,7 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import "../Styles/global.css";
 
 const Cards = ({ book }) => {
   const [show, setShow] = useState(false);
@@ -21,14 +22,14 @@ const Cards = ({ book }) => {
           setShow(true);
           setItem(book);
         }}
-        style={{ height: "100%" }}
+        className="card"
       >
         {thumbnail && (
           <CardMedia
             component="img"
-            height="150"
             image={thumbnail}
             alt="Book Thumbnail"
+            className="card-media"
           />
         )}
         <CardContent>

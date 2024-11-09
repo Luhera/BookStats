@@ -48,13 +48,13 @@ const Main = () => {
         }}
       >
         <Typography variant="h4" color="inherit" sx={{ fontWeight: "bold" }}>
-          A room without books is like a body without a soul.
+          Uma sala sem livros é como um corpo sem alma.
         </Typography>
       </Box>
 
       <Box className="search-box" sx={{ textAlign: "center", py: 4 }}>
         <Typography variant="h5" gutterBottom>
-          Find Your Book
+          Encontre o seu livro
         </Typography>
         <Box
           sx={{
@@ -67,7 +67,7 @@ const Main = () => {
         >
           <TextField
             variant="outlined"
-            placeholder="Enter Your Book Name"
+            placeholder="Digite o nome do seu livro"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="search-input"
@@ -83,7 +83,7 @@ const Main = () => {
             onClick={searchBook}
             className="search-button"
           >
-            Search
+            Pesquisar
           </Button>
         </Box>
         <Box mt={4}>

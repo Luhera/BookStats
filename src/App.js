@@ -20,7 +20,7 @@ const App = () => {
         variant="contained"
         style={{ position: "fixed", top: 10, right: 10 }}
       >
-        Toggle Theme
+        Alternar tema
       </Button>
       <Main />
     </ThemeProvider>

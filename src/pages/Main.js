@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Box,
@@ -6,14 +6,19 @@ import {
   TextField,
   Button,
   Grid,
+  Divider,
 } from "@mui/material";
 import Card from "../Components/Cards";
 import Grafico from "../Components/grafico";
+import axios from "axios";
+import "../Styles/global.css";
+import { useTheme } from "@mui/material/styles";
 
 const Main = () => {
   const [search, setSearch] = useState("");
   const [bookData, setBookData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const theme = useTheme();
 
   const searchBook = () => {
     setLoading(true);
@@ -26,19 +31,10 @@ const Main = () => {
       .finally(() => setLoading(false));
   };
 
-  const filteredBooks = bookData.filter((book) =>
-    book.volumeInfo.title.toLowerCase().includes(search.toLowerCase())
-  );
-
   return (
-    <Container
-      maxWidth="lg"
-      className="header"
-      sx={{ display: "flex", flexDirection: "column", height: "100vh", p: 0 }}
-    >
+    <Container maxWidth="xl" className="header">
       <Box
         sx={{
-          flexGrow: 1,
           backgroundImage: `url(${process.env.PUBLIC_URL}/images/bg1.png)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -48,6 +44,7 @@ const Main = () => {
           justifyContent: "center",
           padding: 4,
           textAlign: "center",
+          height: "40vh",
         }}
       >
         <Typography variant="h4" color="inherit" sx={{ fontWeight: "bold" }}>
@@ -55,18 +52,7 @@ const Main = () => {
         </Typography>
       </Box>
 
-      <Box
-        sx={{
-          flexGrow: 0,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#8B5E3C",
-          color: "#EAD3A2",
-          padding: 4,
-        }}
-      >
+      <Box className="search-box" sx={{ textAlign: "center", py: 4 }}>
         <Typography variant="h5" gutterBottom>
           Find Your Book
         </Typography>
@@ -75,8 +61,8 @@ const Main = () => {
             display: "flex",
             alignItems: "center",
             gap: 2,
-            width: "80%",
-            maxWidth: 400,
+            maxWidth: 600,
+            margin: "0 auto",
           }}
         >
           <TextField
@@ -84,9 +70,19 @@ const Main = () => {
             placeholder="Enter Your Book Name"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            sx={{ backgroundColor: "#fff", borderRadius: 1, flex: 1 }}
+            className="search-input"
+            sx={{
+              flexGrow: 1,
+              backgroundColor: theme.palette.background.default,
+              borderRadius: 1,
+              input: { color: theme.palette.text.primary },
+            }}
           />
-          <Button variant="contained" onClick={searchBook}>
+          <Button
+            variant="contained"
+            onClick={searchBook}
+            className="search-button"
+          >
             Search
           </Button>
         </Box>
@@ -99,12 +95,15 @@ const Main = () => {
         </Box>
       </Box>
 
-      <Container className="container" sx={{ mt: 4, padding: "20px" }}>
+      <Divider sx={{ my: 4 }} />
+
+      <Container className="container">
         {loading ? (
           <Typography
             variant="body1"
-            color="textSecondary"
-            sx={{ textAlign: "center", mt: 4 }}
+            color="text.primary"
+            className="loading-message"
+            sx={{ textAlign: "center", py: 4 }}
           >
             Loading...
           </Typography>
@@ -122,18 +121,32 @@ const Main = () => {
                 ))}
               </Grid>
             </Box>
-            <Box sx={{ mt: 4 }}>
-              <Typography variant="h6" sx={{ mb: 2, textAlign: "center" }}>
+
+            <Divider sx={{ my: 4 }} />
+
+            <Box sx={{ mt: 4, textAlign: "center" }}>
+              <Typography variant="h6" sx={{ mb: 2 }}>
                 Dashboard de Estatísticas
               </Typography>
-              <Grafico bookData={bookData} />
+              <Box
+                sx={{
+                  backgroundColor: theme.palette.background.paper,
+                  padding: 3,
+                  borderRadius: 2,
+                  boxShadow: 3,
+                  marginTop: 3,
+                }}
+              >
+                <Grafico bookData={bookData} />
+              </Box>
             </Box>
           </>
         ) : (
           <Typography
             variant="body1"
-            color="textSecondary"
-            sx={{ textAlign: "center", mt: 4 }}
+            color="text.primary"
+            className="no-books-message"
+            sx={{ textAlign: "center", py: 4 }}
           >
             Nenhum livro encontrado.
           </Typography>

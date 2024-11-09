@@ -6,6 +6,8 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import "../Styles/global.css";
+
 const Modal = ({ show, item, onClose }) => {
   if (!show) {
     return null;
@@ -19,11 +21,7 @@ const Modal = ({ show, item, onClose }) => {
     <Dialog open={show} onClose={onClose}>
       <DialogTitle>{item.volumeInfo.title}</DialogTitle>
       <DialogContent>
-        <img
-          src={thumbnail}
-          alt=""
-          style={{ width: 150, height: 200, marginRight: 20 }}
-        />
+        <img src={thumbnail} alt="" className="modal-thumbnail" />
         <Typography variant="h6">
           {item.volumeInfo.authors?.join(", ")}
         </Typography>
@@ -31,13 +29,13 @@ const Modal = ({ show, item, onClose }) => {
           {item.volumeInfo.publisher}{" "}
           <span>{item.volumeInfo.publishedDate}</span>
         </Typography>
-        <Typography variant="body2" style={{ marginTop: "2rem" }}>
+        <Typography variant="body2" className="modal-content">
           {item.volumeInfo.description}
         </Typography>
-        <Typography variant="body2" style={{ marginTop: "1rem" }}>
+        <Typography variant="body2" className="modal-genres">
           <strong>Genres:</strong> {categories}
         </Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" className="modal-rating">
           <strong>Average Rating:</strong> {averageRating}
         </Typography>
       </DialogContent>

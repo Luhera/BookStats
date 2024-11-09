@@ -19,10 +19,14 @@ const Grafico = ({ bookData }) => {
     return acc;
   }, {});
 
-  const ratingData = bookData.map((book) => ({
-    date: book.volumeInfo.publishedDate,
-    rating: book.volumeInfo.averageRating || 0,
-  }));
+  const ratingData = bookData
+    .filter(
+      (book) => book.volumeInfo.publishedDate && book.volumeInfo.averageRating
+    )
+    .map((book) => ({
+      date: book.volumeInfo.publishedDate,
+      rating: book.volumeInfo.averageRating || 0,
+    }));
 
   const genreChartData = Object.keys(genreData).map((genre) => ({
     genre,
